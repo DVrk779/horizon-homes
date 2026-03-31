@@ -5,8 +5,13 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import Curators from "@/components/Curators";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
+import { client } from "@/sanity/lib/client";
+import { featuredPropertiesQuery } from "@/sanity/lib/queries";
 
-export default function Home() {
+export default async function Home() {
+  // هنا بنطلب العقارات من سانيتي ونخزنها في متغير اسمه properties
+  const properties = await client.fetch(featuredPropertiesQuery);
+
   return (
     <>
       <Navbar />
@@ -15,7 +20,8 @@ export default function Home() {
           <Hero />
         </section>
         <section id="properties">
-          <FeaturedListings />
+          {/* هنا بنبعت الداتا للـ Component */}
+          <FeaturedListings properties={properties} />
         </section>
         <section id="about">
           <WhyChooseUs />

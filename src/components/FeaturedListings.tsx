@@ -3,12 +3,28 @@ import { urlForImage } from '@/sanity/lib/image';
 import { featuredPropertiesQuery } from '@/sanity/lib/queries';
 import Image from 'next/image';
 
-export default async function FeaturedListings() {
-  let properties = [];
-  try {
-    properties = await client.fetch(featuredPropertiesQuery);
-  } catch (error) {
-    console.error("Failed to fetch properties from Sanity:", error);
+interface Property {
+  _id: string;
+  title: string;
+  location: string;
+  price: number;
+  bedrooms: number;
+  bathrooms: number;
+  sqft: number;
+  mainImage?: any;
+  staticImage?: string;
+  [key: string]: any;
+}
+
+export default async function FeaturedListings({ properties: initialProperties }: { properties?: Property[] }) {
+  let properties = initialProperties;
+  
+  if (!properties) {
+    try {
+      properties = await client.fetch(featuredPropertiesQuery);
+    } catch (error) {
+      console.error("Failed to fetch properties from Sanity:", error);
+    }
   }
 
   // Fallback to static data if no properties exist (for demonstration before CMS is populated)
@@ -60,7 +76,7 @@ export default async function FeaturedListings() {
         <a className="mt-8 md:mt-0 font-label text-sm uppercase tracking-widest border-b border-primary pb-2 hover:text-secondary hover:border-secondary transition-all" href="#">View All Estates</a>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-24 gap-x-12">
-        {properties.map((property: any, index: number) => {
+        {properties.map((property: Property, index: number) => {
           const image = property.mainImage ? urlForImage(property.mainImage)?.url() : property.staticImage;
           
           return (
