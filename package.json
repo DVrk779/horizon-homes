@@ -10,18 +10,19 @@
   },
   "dependencies": {
     "@sanity/image-url": "latest",
+    "@tailwindcss/postcss": "latest",
     "next": "15.1.0",
     "next-sanity": "latest",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "sanity": "3.60.0",
-    "styled-components": "6.1.8",
-    "@tailwindcss/postcss": "latest"
+    "styled-components": "6.1.8"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "eslint": "^10.1.0",
     "postcss": "^8",
     "tailwindcss": "latest",
     "typescript": "^5"
