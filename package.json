@@ -12,8 +12,8 @@
     "@sanity/image-url": "^2.1.1",
     "next": "15.1.0",
     "next-sanity": "^12.2.1",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "react": "^19.0.0-rc.1",
+    "react-dom": "^19.0.0-rc.1",
     "sanity": "^5.18.0",
     "styled-components": "^6.1.8"
   },
