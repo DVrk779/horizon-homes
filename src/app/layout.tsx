@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Noto_Serif, Manrope, Inter } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 
 const notoSerif = Noto_Serif({
@@ -37,6 +38,7 @@ export default function RootLayout({
       </head>
       <body className={`${notoSerif.variable} ${manrope.variable} ${inter.variable} antialiased bg-background text-on-surface font-body selection:bg-secondary/30`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
